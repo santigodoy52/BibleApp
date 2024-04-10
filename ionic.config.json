@@ -1,0 +1,7 @@
+{
+  "name": "AppBible",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
