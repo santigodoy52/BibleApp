@@ -1,10 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title size="large"> Biblia </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<!--ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <div class="segment-container">
+      <ion-segment [(ngModel)]="selectedSegment" class="segment">
+        <ion-segment-button value="primary" class="segment-button" (click)="getOldTestament()">
+          <ion-label>Antiguo testamento</ion-label>
+        </ion-segment-button>
+    
+        <ion-segment-button value="segment" class="segment-button" (click)="getNewTestament()">
+          <ion-label>Nuevo testamento</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+  
+  </ion-toolbar>
+</ion-header-->
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -13,5 +30,61 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <!-- skeleton -->
+  <div *ngIf="loading">
+    <ion-list>
+      <ion-item *ngFor="let item of items" style="margin-top: 20px;">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+
+        <br>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <ion-list style="margin-top: 10px;">
+    <ion-item>
+      <ion-input labelPlacement="stacked" placeholder="Buscar libro..." clearInput="true" (ionChange)="filterBooks($event)">
+        <ion-icon slot="start" name="search" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ng-container *ngIf="this.books">
+
+    <div *ngFor="let book of this.books" [id]="'book' + book.abrev">
+      <ion-card (click)="navigateBookComponent(book.names[0])">
+        <ion-card-header>
+          <ion-card-title [style.font-size.px]="fontSize">{{ book.names[0] }}</ion-card-title>
+          <ion-card-subtitle [style.font-size.px]="fontSize">{{ book.abrev }}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content [style.font-size.px]="fontSize">
+          El libro de {{book.names[0] }} pertenece al {{ book.testament }}, y posee {{book.chapters }} capítulos. 
+          Presiona para ver más información.
+        </ion-card-content>
+      
+        <ion-button fill="clear">Ver libro</ion-button>
+      </ion-card>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="this.books && this.books.length === 0">
+    <p class="textEmpty">No se han encontrado resultados para tu búsqueda "{{inputData}}"</p>
+  </ng-container>
+  
 </ion-content>

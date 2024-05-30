@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+.empty-list-container {
+    text-align: center;
+    color: #555;
+}
+.empty-list-container img {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+.empty-list-container h2 {
+    font-size: 24px;
+    margin: 0;
+}
+.empty-list-container p {
+    font-size: 16px;
+    margin: 10px 0 0;
+}

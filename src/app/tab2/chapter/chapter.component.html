@@ -1,0 +1,107 @@
+<ion-content>
+  <ion-toolbar class="fixed">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ng-container>
+      <ion-title > Libro: {{ this.book }} - {{ this.parametro }}</ion-title>
+    </ng-container>
+  </ion-toolbar>
+
+  <ion-grid>
+
+  <ng-container *ngIf="loading">
+    <ion-list>
+      <ion-item *ngFor="let item of items" style="margin-top: 20px;">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+        <br>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && !selectVerse">
+
+    <ion-title style="margin-bottom: 30px;">Versículos:</ion-title>
+
+    <ion-row>
+      <div *ngFor="let verse of versesArray">
+        <ion-card color="primary" class="card" (click)="viewVerse(verse)">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center ion-align-self-center">{{ verse }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </ion-row>
+
+  </ng-container>
+
+  </ion-grid>
+
+  <br><br>
+  
+  <ng-container *ngIf="selectVerse">
+
+    <div *ngFor="let verse of this.chapter.vers" [id]="'verse' + verse.number">
+      <ion-list>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label>
+              <ng-container *ngIf="verse.study" >
+                <div class="verse-study-wrapper">
+                  <ion-text [style.font-size.px]="fontSize"> {{ verse.study }} </ion-text><br />
+                </div>
+              </ng-container>
+              <ion-note color="medium" class="ion-text-wrap" [style.font-size.px]="fontSize">
+                {{ verse.number}}: {{ verse.verse }}
+              </ion-note>
+            </ion-label>
+          </ion-item>
+          <ion-item-options slot="end">
+            <ion-item-option color="primary" (click)="copyText(verse.verse)">
+              <ion-icon slot="icon-only" name="copy"></ion-icon>
+            </ion-item-option>
+            <ion-item-option color="warning" (click)="addToFavorite(verse)">
+              <ion-icon slot="icon-only" name="star"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+        
+        <!--ion-item [button]="true" detail="false">
+          <div class="unread-indicator-wrapper" slot="start">
+            <div class="unread-indicator"></div>
+          </div>
+          <ion-label>
+            <strong class="margin" [style.font-size.px]="fontSize">Versículo: {{ verse.number }}</strong>
+            <ng-container *ngIf="verse.study" >
+              <div class="verse-study-wrapper">
+                <ion-text> {{ verse.study }} </ion-text><br />
+              </div>
+            </ng-container>
+            <ion-note color="medium" class="ion-text-wrap" [style.font-size.px]="fontSize">
+              {{ verse.verse }}
+            </ion-note>
+          </ion-label>
+        <ion-button fill="clear" (click)="copyText(verse.verse)" >
+          <ion-icon slot="icon-only" name="copy"></ion-icon>
+        </ion-button>
+        </ion-item-->
+      </ion-list>
+    </div>
+    
+  </ng-container>
+
+</ion-content>
+

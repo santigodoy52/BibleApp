@@ -1,0 +1,270 @@
+.container {
+    position: relative;
+    text-align: center;
+    width: 100%; /* Ajusta el ancho del div según tus necesidades */
+  }
+  .image {
+    width: 100%;
+    height: 400px;
+  }
+  .text-overlay {
+    font-family: Lato, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 22px;
+  }
+  .title-overlay {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 24px; 
+    font-weight: bold; 
+  }
+
+
+
+  :root {
+    --body-color: 48 48 58;
+    
+    --font-color: 255 255 255;
+    --accent-font-color: 170 170 170;  
+    --highlight-color: 192 124 63;
+    
+    --theme-background: 10 10 10;
+    
+    --theme-light: 0 0 0;
+    --theme-medium: 0 0 0;
+    --theme-dark: 0 0 0;
+  }
+  
+  body {
+    background-color: rgb(var(--body-color));
+    margin: 0px;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background-color: rgb(var(--theme-background));
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  h1, h2, h3, h4, input, select, button, span, a, p {
+    color: rgb(var(--font-color));
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0px;
+  }
+  
+  button {
+    all: unset;
+  }
+  
+  button, a, input {  
+    outline: none;
+  }
+  
+  .highlight {
+    color: rgb(var(--highlight-color));
+  }
+  
+  .fancy-scrollbar::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+  }
+  
+  .fancy-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .fancy-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+  }
+  
+  #phone {
+    background-color: rgb(var(--theme-background));
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+    height: auto;
+    width: 393px;  
+    margin: 100px auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #main-wrapper {
+    height: 100%;
+    overflow: auto;
+  }
+  
+  #main {
+    height: 100%;
+  }
+  
+  #nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+    padding: 0.5rem;
+    pointer-events: none;
+  }
+  
+  #nav > .nav-section {
+    display: flex;  
+    gap: 0.25rem;
+  }
+  
+  #nav > .nav-section > button {
+    height: 2.5rem;
+    width: 2.5rem;
+    display: grid;
+    place-items: center;
+    color: white;
+    pointer-events: all;
+    cursor: pointer;
+  }
+  
+  #header {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  #header-background-image {
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0px;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(15px) brightness(70%);
+  }
+  
+  #header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+    margin-top: 1rem;
+  }
+  
+  #header-artist {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;  
+  }
+  
+  #header-artist-image {
+    height: 1.5rem;
+    width: 1.5rem;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  #header-image {
+    width: 80%;
+    height: 300px;
+    border-radius: 0.5rem;
+    position: relative;
+  }
+  
+  #header-tour {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+  }
+  
+  #header-tour-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  #header-tour-year {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  
+  #body {
+    overflow: auto;
+  }
+  
+  #tour-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem;
+  }
+  
+  #tour-actions > .tour-action {
+    height: 3rem;
+    width: 3rem;
+    display: grid;
+    place-items: center;
+    background-color: rgb(255 255 255 / 10%);
+    border-radius: 3rem;
+    font-size: 1rem;
+  }
+  
+  #tour-actions > .tour-action:is(:focus, :hover) {
+    background-color: rgb(255 255 255 / 15%);
+    cursor: pointer;
+  }
+  
+  #tour-actions > .tour-action.main {
+    height: 4rem;
+    width: 4rem;
+    font-size: 1.25rem;
+  }
+  
+  
+  @media(max-width: 500px) {
+    body {
+      overflow: auto;  
+    }
+    
+    #phone {
+      height: 100vh;
+      display: flex;
+      width: 100%;
+      margin: 0px auto;
+    }
+    
+    #main-wrapper {
+      width: 100%;
+      flex-grow: 1;
+    }
+  }

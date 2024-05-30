@@ -1,17 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" [class.dark-theme]="darkTheme" [class.light-theme]="!darkTheme">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title>
+        Configuraciones
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <br>
+
+  <ion-item>
+    <ion-select label="Tamaño de letra" placeholder="Seleccione una opción" (ionChange)="seleccionarGrosorLetra($event)">
+      <ion-select-option value="normal">Normal</ion-select-option>
+      <ion-select-option value="grande">Grande</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item>
+    <ion-select label="Versión" placeholder="Seleccione una opción" (ionChange)="seleccionarVersion($event)">
+      <ion-select-option value="rv">Reina Valera 1960</ion-select-option>
+      <ion-select-option value="nvi">Nueva versión internacional</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <!--ion-item>
+    <ion-toggle (ionChange)="changeTheme($event)">Tema</ion-toggle>
+  </ion-item-->
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <span>Versión: 2024.04 - By SG </span>
+  </ion-fab>
+
 </ion-content>

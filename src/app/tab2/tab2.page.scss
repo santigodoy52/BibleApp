@@ -1,0 +1,21 @@
+.segment-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .segment-button {
+    flex: 1;
+    text-align: center;
+  }
+
+  .textEmpty{
+    padding: 20px;
+  }
+  
+  .resaltado {
+    background-color: rgb(156, 156, 152); /* Color de resaltado */
+    transition: background-color all 600ms ease; /* Transición suave */
+  }
+  
+  

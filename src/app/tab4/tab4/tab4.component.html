@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title size="large"> Búsqueda general</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list style="margin-top: 10px;">
+    <ion-item>
+      <ion-input #inputSearch labelPlacement="stacked" placeholder="Ingrese palabra o frase..." clearInput="true" (ionChange)="filterBooks($event)">
+        <ion-icon slot="start" name="search" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!-- skeleton -->
+  <div style="margin-top: 11px;" *ngIf="loading">
+    <ion-list>
+      <ion-item *ngFor="let item of items" style="margin-top: 20px;">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+
+        <br>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <ng-container *ngIf="verse && verse.length > 0">
+    <div *ngFor="let verse of this.verse" [id]="'verse' + verse.number">
+      <ion-list [inset]="true">
+        <ion-item [button]="true" detail="false">
+          <div class="unread-indicator-wrapper" slot="start">
+            <div class="unread-indicator"></div>
+          </div>
+          <ion-label>
+            <strong class="margin" [style.font-size.px]="fontSize">{{ verse.book }} - {{ verse.chapter}}:{{verse.number}}</strong>
+            <ng-container *ngIf="verse.study" >
+              <div class="verse-study-wrapper">
+                <ion-text [style.font-size.px]="fontSize"> {{ verse.study }} </ion-text><br />
+              </div>
+            </ng-container>
+            <ion-note color="medium" class="ion-text-wrap" [style.font-size.px]="fontSize">
+              {{ verse.verse }}
+            </ion-note>
+          </ion-label>
+          <!-- Agregar botón de copiar -->
+        <ion-button fill="clear" (click)="copyText(verse.verse)" >
+          <ion-icon slot="icon-only" name="copy"></ion-icon>
+        </ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="this.verse && this.verse.length === 0">
+    <p class="textEmpty">No se han encontrado resultados para tu búsqueda "{{inputData}}"</p>
+  </ng-container>
+  
+  <!--ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button  expand="block" id="open-modal">
+      <ion-icon name="mic"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-->
+
+  <!--ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+
+      <div class="block">
+        <div class="center" (touchstart)="botonPresionado()" (touchend)="botonLiberado()">
+          <div class="ring" #ring></div>
+          <ion-icon name="mic"></ion-icon>
+        </div>
+      </div>
+
+      <span class="text">{{ labelModal }}</span>
+
+      <ng-container *ngIf="recording">
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </ng-container>
+     
+    </ng-template>
+  </ion-modal-->
+
+</ion-content>

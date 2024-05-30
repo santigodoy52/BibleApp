@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private dataService: DataService) {
+    this.setVersion();
+  }
+
+  setVersion() {
+    //Inicializamos la version
+    const version = 'rv1960';
+    this.dataService.guardarVersion(version);
+  }
+
 }

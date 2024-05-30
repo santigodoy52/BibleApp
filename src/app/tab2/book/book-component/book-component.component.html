@@ -1,0 +1,55 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ng-container *ngIf="this.book">
+      <ion-title> Libro: {{ bookName }}</ion-title>
+    </ng-container>
+  </ion-toolbar>
+
+  <ion-grid>
+
+    <ion-title style="margin: 10px;">Capítulos</ion-title>
+
+  <ng-container *ngIf="loading">
+  <!-- skeleton -->
+    <ion-list>
+      <ion-item *ngFor="let item of items" style="margin-top: 20px;">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+          </p>
+        </ion-label>
+        <br>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="!loading">
+    <ion-row>
+      <div *ngFor="let chapters of chaptersArray">
+        <ion-card color="primary" class="card" (click)="navigateChapterComponent(chapters.toString())">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center ion-align-self-center">{{ chapters }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </ion-row>
+  </ng-container>
+
+  </ion-grid>
+</ion-content>
+
+
+
+

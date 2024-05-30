@@ -1,17 +1,82 @@
-<ion-header [translucent]="true">
+<!--ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Home
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header-->
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div id="phone">
+    <div id="main-wrapper" class="fancy-scrollbar">
+      <div id="main">
+        <div id="content">
+          <div id="nav">
+            <div class="nav-section nav-left">
+              <button type="button">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+            </div>
+            <div class="nav-section nav-right">
+              <button type="button">
+                <i class="fa-regular fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </div>
+          <div id="header">
+            <img id="header-background-image" [src]="srcImage" />
+            
+            <div id="header-content">
+              <div id="header-artist">
+                <img  id="header-artist-image" [src]="srcImage" />
+                <h2 id="header-artist-name" class="clase-de-texto" [style.color]="textColor">{{title}}</h2>
+              </div>
+              <img id="header-image" [src]="srcImage" />
+              <div #versiculoContainer id="header-tour">
+                <h1 id="header-tour-name" class="clase-de-texto" [style.color]="textColor">{{ verseDetail }}</h1>
+                <h3 id="header-tour-year" class="clase-de-texto" [style.color]="textColor">{{ versiculoAleatorio }}</h3>
+              </div>
+            </div>
+          </div>
+          <div id="body">
+            <div id="tour-actions">
+              <button class="tour-action" type="button">
+                <ion-icon name="copy-outline" (click)="copyText(versiculoAleatorio)"></ion-icon>
+              </button>
+              <button class="tour-action main" type="button">
+                <ion-icon name="share-social-outline" size="large" (click)="compartirVersiculo()"></ion-icon>
+              </button>
+              <button class="tour-action" type="button">
+                <ion-icon name="star-outline" (click)="addToFavorite()"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-card (click)="navigateOldTestament()">
+                  <img height="150" src="/assets/icon/antiguo-testamento.jpeg" />
+                  <ion-card-content>
+                    Comienza a leer el antiguo testamento.
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col size="6">
+                <ion-card (click)="navigateNewTestament()">
+                  <img  height="150" src="/assets/icon/nuevo-testamento.jpg" />
+                  <ion-card-content>
+                    Comienza a leer el nuevo testamento.
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </ion-content>
